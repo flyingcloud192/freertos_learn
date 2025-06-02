@@ -1,5 +1,4 @@
 #include "list.h"
-#include <stddef.h>
 // 初始化当前链表
 void vListInitialise(List_t* const pxlist){
 	pxlist->uxNumberOfItems = (TickType_t) 0x00;                       // 链表初始化节点数为0
@@ -10,6 +9,11 @@ void vListInitialise(List_t* const pxlist){
 	pxlist->xListEnd.pxPrevious  = (ListItem_t*)&(pxlist->xListEnd);    // 将当前链表尾节点元素的previous指针指向当前链表尾节点
 	pxlist->xListEnd.pvOwner     = NULL;                                // 当前链表的pvOwner暂时为NULL
 	pxlist->xListEnd.pvContainer = pxlist;                              // 当前链表尾节点的container为当前链表
+}
+
+void vListInitialiseItem(ListItem_t* const pxItem){
+	// 初始化该节点所在链表为空,表示该节点尚未插入任何链表
+	pxItem->pvContainer = NULL;   
 }
 
 // 向当前链表尾部插入一个新的节点
@@ -70,4 +74,9 @@ UBaseType_t vListRemove(ListItem_t* pxItemToRemove){
 	newpxIndex->pxNext->pxPrevious = newpxIndex->pxPrevious;
 	(ToRemoveList->uxNumberOfItems)--;
 	return ToRemoveList->uxNumberOfItems;
+}
+
+
+void listSET_LIST_ITEM_OWNER(ListItem_t* const pxListItem,void* pxOwner){
+	pxListItem->pvOwner = pxOwner;
 }

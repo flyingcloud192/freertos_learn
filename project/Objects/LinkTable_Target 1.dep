@@ -1,12 +1,22 @@
 Dependencies for Project 'LinkTable', Target 'Target 1': (DO NOT MODIFY !)
-F (..\user\main.c)(0x6826E15D)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\freertos\include -I ..\user -I ..\user\include-ID:\STM32\RTOS_Learn\exp1\project\RTE-ID:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (..\freertos\include\portmarco.h)(0x6826D03B)
-I (..\freertos\include\list.h)(0x6826E1AA)
-F (..\freertos\source\list.c)(0x6826D0BC)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\freertos\include -I ..\user -I ..\user\include-ID:\STM32\RTOS_Learn\exp1\project\RTE-ID:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD-o .\objects\list.o --omf_browse .\objects\list.crf --depend .\objects\list.d)
-I (..\freertos\include\list.h)(0x6826E1AA)
-I (..\freertos\include\portmarco.h)(0x6826D03B)
+F (..\user\main.c)(0x683ABF8B)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\freertos\include -I ..\user -I ..\user\include-ID:\STM32\RTOS_Learn\exp1\project\RTE-ID:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (..\freertos\include\portmarco.h)(0x6829C6DA)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
-F (..\freertos\include\portmarco.h)(0x6826D03B)()
+I (..\freertos\include\list.h)(0x68283A10)
+I (..\freertos\include\task.h)(0x683A70B7)
+I (..\freertos\include\FreeRTOSConfig.h)(0x683A7662)
+F (..\freertos\source\list.c)(0x682839E7)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\freertos\include -I ..\user -I ..\user\include-ID:\STM32\RTOS_Learn\exp1\project\RTE-ID:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD-o .\objects\list.o --omf_browse .\objects\list.crf --depend .\objects\list.d)
+I (..\freertos\include\list.h)(0x68283A10)
+I (..\freertos\include\portmarco.h)(0x6829C6DA)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
+F (..\freertos\source\task.c)(0x683ABAE9)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\freertos\include -I ..\user -I ..\user\include-ID:\STM32\RTOS_Learn\exp1\project\RTE-ID:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD-o .\objects\task.o --omf_browse .\objects\task.crf --depend .\objects\task.d)
+I (..\freertos\include\task.h)(0x683A70B7)
+I (..\freertos\include\portmarco.h)(0x6829C6DA)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
+I (..\freertos\include\list.h)(0x68283A10)
+I (..\freertos\include\FreeRTOSConfig.h)(0x683A7662)
+F (..\freertos\include\portmarco.h)(0x6829C6DA)()
+F (..\freertos\include\task.h)(0x683A70B7)()
 F (RTE\Device\STM32F103ZE\RTE_Device.h)(0x57D24F70)()
 F (RTE\Device\STM32F103ZE\startup_stm32f10x_hd.s)(0x5825386C)(--cpu Cortex-M3 -g --apcs=interwork -ID:\STM32\RTOS_Learn\exp1\project\RTE-ID:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 521" --pd "_RTE_ SETA 1" --pd "STM32F10X_HD SETA 1"--list .\listings\startup_stm32f10x_hd.lst --xref -o .\objects\startup_stm32f10x_hd.o --depend .\objects\startup_stm32f10x_hd.d)
 F (RTE\Device\STM32F103ZE\system_stm32f10x.c)(0x5825386C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\freertos\include -I ..\user -I ..\user\include-ID:\STM32\RTOS_Learn\exp1\project\RTE-ID:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)

@@ -22,21 +22,40 @@ Dialog DLL:      TARMSTM.DLL V1.65.0.0
  
 <h2>Project:</h2>
 D:\STM32\RTOS_Learn\exp1\project\LinkTable.uvprojx
-Project File Date:  05/15/2025
+Project File Date:  05/17/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling startup_stm32f10x_hd.s...
-compiling main.c...
-..\user\main.c(27): warning:  #111-D: statement is unreachable
-  	return 0;
-..\user\main.c: 1 warning, 0 errors
 compiling list.c...
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\source\list.c: 1 warning, 0 errors
+compiling main.c...
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\include\task.h(87): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\user\main.c(77): warning:  #111-D: statement is unreachable
+  	return 0;
+..\user\main.c: 4 warnings, 0 errors
+compiling task.c...
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\include\task.h(87): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\source\task.c(263): warning:  #1-D: last line of file ends without a newline
+  }
+..\freertos\source\task.c: 4 warnings, 0 errors
 compiling system_stm32f10x.c...
 linking...
-Program Size: Code=872 RO-data=320 RW-data=0 ZI-data=1632  
-".\Objects\LinkTable.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=1440 RO-data=336 RW-data=8 ZI-data=3112  
+".\Objects\LinkTable.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -63,11 +82,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:4.3.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\startup_stm32f10x_hd.s
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Source file:   Device\Source\ARM\startup_stm32f10x_hd.s
       Include file:  RTE_Driver\Config\RTE_Device.h
       Source file:   Device\Source\system_stm32f10x.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

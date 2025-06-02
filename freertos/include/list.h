@@ -1,3 +1,5 @@
+#ifndef _LIST_H__
+#define _LIST_H__
 #include "portmarco.h"
 #pragma pack(4)
 /* 定义任务链表节点 */
@@ -26,12 +28,14 @@ void vListInsertEnd(List_t* const pxlist, ListItem_t* const pxNewListItem);
 void vListInsert(List_t* const pxlist, ListItem_t* const pxNewListItem);
 // 声明初始化链表函数
 void vListInitialise(List_t* const pxlist);
+// 声明初始化链表节点函数
+void vListInitialiseItem(ListItem_t* const pxItem);
+
 // 声明删除链表
 UBaseType_t vListRemove(ListItem_t* pxItemToRemove);
 
 /* 初始化节点owner */
-#define listSET_LIST_ITEM_OWNER(pxListItem,pxOwner) \
-        ( (pxListItem)->(pvOwner) = (void)* (pxOwner) )
+void listSET_LIST_ITEM_OWNER(ListItem_t* const pxListItem,void* pxOwner);
 			
 /* 获取节点owner */
 #define listGET_LIST_ITEM_OWNER(pxListItem) \
@@ -65,7 +69,6 @@ UBaseType_t vListRemove(ListItem_t* pxItemToRemove);
 #define listGET_NEXT(pxListItem)\
 		((pxListItem)->pxNext)
 
-#define NAME  {123}
 		
 /* 获取链表第一个节点的内核对象,就是TCB */
 #define listGET_OWNER_OF_NEXT_ENTRY(pxTCB,pxList)     \
@@ -73,3 +76,4 @@ UBaseType_t vListRemove(ListItem_t* pxItemToRemove);
 	ListItem_t* pxHeadItem = pxList->pxIndex->pxNext; \
 	(pxTCB) = (pxHeadItem)->(pvOwner);                \
 }
+#endif
