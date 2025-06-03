@@ -81,7 +81,24 @@ __asm void vPortSVCHandler(void);
 void portYIELD(void);
 /* task1和task2轮流切换,就是切换当前  */
 
-
 /* PendSV中断服务函数 */
 __asm void xPortPendSVHandler(void);
+
+
+/******系统临界段相关，检验使用带中断返回值的开关中断操作
+ * demo
+ * {
+ * 		uint32_t uxSavedInterruptStatus;
+ * 		uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();  // 关中断，返回当前中断屏蔽寄存器的值
+ *      TODO..........
+ * 		taskEXIT_CRITICAL_FROM_ISR(uxSavedInterruptStatus);      // 退出临界段，带中断返回值
+ * }
+ * *******/
+
+/* 进入临界段，带返回值的关中断函数 */
+#define taskENTER_CRITICAL_FROM_ISR()   portSET_INTERRUPT_MASK_FROM_ISR()
+// 退出临界段，带中断返回值
+#define taskEXIT_CRITICAL_FROM_ISR(uxSavedInterruptStatus)  portCLEAR_INTERRUPT_MASK_FROM_ISR(uxSavedInterruptStatus)
+
+
 #endif

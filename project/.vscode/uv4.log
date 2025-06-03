@@ -2,35 +2,39 @@
 Rebuild target 'Target 1'
 assembling startup_stm32f10x_hd.s...
 compiling list.c...
+..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
 ..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\source\list.c: 1 warning, 0 errors
+..\freertos\source\list.c: 2 warnings, 0 errors
+compiling portmarco.c...
+..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\source\portmarco.c(32): warning:  #1-D: last line of file ends without a newline
+  }
+..\freertos\source\portmarco.c: 2 warnings, 0 errors
 compiling main.c...
-..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
-  #endif
 ..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\include\task.h(87): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
   #endif
-..\user\main.c(15): warning:  #550-D: variable "flag" was set but never used
-  	UBaseType_t flag = 0;
-..\user\main.c(28): warning:  #550-D: variable "flag" was set but never used
-  	UBaseType_t flag = 0;
-..\user\main.c(84): warning:  #111-D: statement is unreachable
+..\freertos\include\task.h(104): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\user\main.c(81): warning:  #111-D: statement is unreachable
   	return 0;
-..\user\main.c: 6 warnings, 0 errors
+..\user\main.c: 4 warnings, 0 errors
 compiling task.c...
-..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
-  #endif
 ..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\include\task.h(87): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\source\task.c(260): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\task.h(104): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\source\task.c(263): warning:  #1-D: last line of file ends without a newline
   }
 ..\freertos\source\task.c: 4 warnings, 0 errors
 compiling system_stm32f10x.c...
 linking...
-Program Size: Code=1408 RO-data=336 RW-data=4 ZI-data=2084  
-".\Objects\LinkTable.axf" - 0 Error(s), 11 Warning(s).
+Program Size: Code=1512 RO-data=336 RW-data=8 ZI-data=3112  
+".\Objects\LinkTable.axf" - 0 Error(s), 12 Warning(s).
 Build Time Elapsed:  00:00:01

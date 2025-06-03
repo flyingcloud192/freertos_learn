@@ -21,41 +21,49 @@ Target DLL:      UL2CM3.DLL V1.158.5.0
 Dialog DLL:      TARMSTM.DLL V1.65.0.0
  
 <h2>Project:</h2>
-D:\STM32\RTOS_Learn\exp1\project\LinkTable.uvprojx
-Project File Date:  05/17/2025
+d:\STM32\RTOS_Learn\exp2\project\LinkTable.uvprojx
+Project File Date:  06/03/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling startup_stm32f10x_hd.s...
 compiling list.c...
-..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\freertos\source\list.c: 1 warning, 0 errors
-compiling main.c...
-..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
-  #endif
 ..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\include\task.h(87): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
   #endif
-..\user\main.c(77): warning:  #111-D: statement is unreachable
+..\freertos\source\list.c: 2 warnings, 0 errors
+compiling portmarco.c...
+..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\source\portmarco.c(32): warning:  #1-D: last line of file ends without a newline
+  }
+..\freertos\source\portmarco.c: 2 warnings, 0 errors
+compiling main.c...
+..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\include\task.h(104): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\user\main.c(81): warning:  #111-D: statement is unreachable
   	return 0;
 ..\user\main.c: 4 warnings, 0 errors
 compiling task.c...
-..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
-  #endif
 ..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\include\task.h(87): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\list.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\freertos\include\task.h(104): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\freertos\source\task.c(263): warning:  #1-D: last line of file ends without a newline
   }
 ..\freertos\source\task.c: 4 warnings, 0 errors
 compiling system_stm32f10x.c...
 linking...
-Program Size: Code=1440 RO-data=336 RW-data=8 ZI-data=3112  
-".\Objects\LinkTable.axf" - 0 Error(s), 9 Warning(s).
+Program Size: Code=1512 RO-data=336 RW-data=8 ZI-data=3112  
+".\Objects\LinkTable.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -72,8 +80,8 @@ Package Vendor: Keil
    * Component: Startup Version: 1.0.0
 
 <h2>Collection of Component include folders:</h2>
-  D:\STM32\RTOS_Learn\exp1\project\RTE
-  D:\STM32\RTOS_Learn\exp1\project\RTE\Device\STM32F103ZE
+  d:\STM32\RTOS_Learn\exp2\project\RTE
+  d:\STM32\RTOS_Learn\exp2\project\RTE\Device\STM32F103ZE
   C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
@@ -84,8 +92,8 @@ Package Vendor: Keil
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Source file:   Device\Source\ARM\startup_stm32f10x_hd.s
-      Include file:  RTE_Driver\Config\RTE_Device.h
       Source file:   Device\Source\system_stm32f10x.c
+      Include file:  RTE_Driver\Config\RTE_Device.h
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

@@ -3,12 +3,12 @@
         {
             "name": "Target 1",
             "includePath": [
-                "d:\\STM32\\RTOS_Learn\\exp1\\freertos\\include",
-                "d:\\STM32\\RTOS_Learn\\exp1\\user",
-                "d:\\STM32\\RTOS_Learn\\exp1\\user\\include",
+                "d:\\STM32\\RTOS_Learn\\exp2\\freertos\\include",
+                "d:\\STM32\\RTOS_Learn\\exp2\\user",
+                "d:\\STM32\\RTOS_Learn\\exp2\\user\\include",
                 "C:\\Keil_v5\\ARM\\ARMCC\\include",
                 "C:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
-                "d:\\STM32\\RTOS_Learn\\exp1\\freertos\\source"
+                "d:\\STM32\\RTOS_Learn\\exp2\\freertos\\source"
             ],
             "defines": [
                 "__CC_ARM",

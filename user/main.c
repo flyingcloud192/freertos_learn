@@ -73,6 +73,10 @@ int main(void){
 	vTaskStartScheduler(&TASK1TCB);  // 开启任务调度,传入第一个任务的TCB
 
 	while(1){
+		portDISABLE_INTERRUPTS();
+		uint32_t x = portSET_INTERRUPT_MASK_FROM_ISR();
+		portENABLE_INTERRUPTS();
+		portCLEAR_INTERRUPT_MASK_FROM_ISR(x);
 	}
 	return 0;
 }

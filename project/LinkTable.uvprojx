@@ -399,6 +399,11 @@
               <FileType>1</FileType>
               <FilePath>..\freertos\source\task.c</FilePath>
             </File>
+            <File>
+              <FileName>portmarco.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\freertos\source\portmarco.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
