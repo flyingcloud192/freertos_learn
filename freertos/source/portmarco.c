@@ -30,3 +30,15 @@ void vPortSetBASEPRI(uint32_t ulNewBASEPRI){
 		dsb
 	}
 }
+
+/* SysTick初始化函数 */
+void vPortSetupTimerInterrupt(void){
+	// 设置SysTick重载寄存器的值
+	portNVIC_SYSTICK_LOAD_REG = (configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ) - 1; // 设置SysTick重载值
+	/* 设置SysTick控制寄存器
+	   1、设置系统定时器时钟为CPU内核时钟
+	   2、使能SysTick中断
+	   3、使能SysTick计数器
+	*/
+	portNVIC_SYSTICK_CTRL_REG = (portNVIC_SYSTICK_CLK_BIT | portNVIC_SYSTICK_INT_BIT | portNVIC_SYSTICK_ENABLE_BIT);
+}

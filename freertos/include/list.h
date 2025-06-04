@@ -38,42 +38,30 @@ UBaseType_t vListRemove(ListItem_t* pxItemToRemove);
 void listSET_LIST_ITEM_OWNER(ListItem_t* const pxListItem,void* pxOwner);
 			
 /* 获取节点owner */
-#define listGET_LIST_ITEM_OWNER(pxListItem) \
-		( (pxListItem)->(pvOwner) )
+void* listGET_LIST_ITEM_OWNER(ListItem_t* const pxListItem);
 		
 /* 初始化节点排序辅助值 */
-#define listSET_LIST_ITEM_VALUE(pxListItem,pxValue) \
-		( (pxListItem)->(xItemValue) = pxValue )
-		
+void listSET_LIST_ITEM_VALUE(ListItem_t* const pxListItem, TickType_t pxValue);
+
 /* 获取节点排序辅助值 */
-#define listGET_LIST_ITEM_VALUE(pxListItem) \
-		( (pxListItem)->(xItemValue) )
-		
+TickType_t listGET_LIST_ITEM_VALUE(ListItem_t* const pxListItem);
+
 /* 获取链表元素个数 */
-#define listCURRENT_LIST_LENGTH(pxList) \
-		( (pxList)->uxNumberOfItems )
+TickType_t listCURRENT_LIST_LENGTH(List_t const* pxList);
 		
 /* 判断链表是否为空 */
-#define listLIST_IS_EMPTY(pxList) \
-		( (BaseType_t) ((pxList)->(uxNumberOfItems) == (UBaseType_t)0 ) )
+BaseType_t listLIST_IS_EMPTY(List_t const* pxList);
 		
 /* 获取链表的第一个节点 */
-#define listGET_GET_HEAD_ENTRY(pxList) \
-		( ((pxList)->(xListEnd)).pxNext )
+ListItem_t* listGET_HEAD_ENTRY(List_t* const pxList);
 
 /* 获取链表的尾节点 */
-#define listGET_END_MARKER(pxList) \
-		( (ListItem_t const *) &((pxList)->(xListEnd)) )
+ListItem_t* listGET_END_MARKER(List_t* const pxList);
 			
 /* 获取当前节点的下一个节点 */
-#define listGET_NEXT(pxListItem)\
-		((pxListItem)->pxNext)
-
+ListItem_t* listGET_NEXT(ListItem_t* const pxListItem);
 		
 /* 获取链表第一个节点的内核对象,就是TCB */
-#define listGET_OWNER_OF_NEXT_ENTRY(pxTCB,pxList)     \
-{                                                     \
-	ListItem_t* pxHeadItem = pxList->pxIndex->pxNext; \
-	(pxTCB) = (pxHeadItem)->(pvOwner);                \
-}
+void* listGET_OWNER_OF_NEXT_ENTRY(List_t* const pxList);
+
 #endif

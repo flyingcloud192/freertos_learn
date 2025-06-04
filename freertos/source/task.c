@@ -6,6 +6,15 @@ List_t pxReadyTasksLists[configMAX_PRIORITIES];                     // 定义任
 
 TCB_t* pxCurrentTCB = NULL;                                         // 定义调度器当前执行的任务TCB指针
 
+TickType_t xTickCount = 0;                                          // 定义系统滴答计数器
+
+StackType_t IdleTaskStack[configMINIMAL_STACK_SIZE]; // 空闲任务栈
+TCB_t IdleTaskTCB; // 空闲任务控制块
+
+void delay(UBaseType_t count){
+	for(;count!= 0;count--){}
+}
+
 /* 创建新任务函数
 	@return 任务控制块句柄,其实就是pxTaskBuffer
 */
@@ -110,8 +119,27 @@ void prvInitialiseTaskLists(void){
 }
 
 
+void prvIdleTask(void* pvParameters){
+	/* 空闲任务,空闲任务会一直运行 */
+	while(1){
+	}
+}
+
 /* 开启任务调度 */
 void vTaskStartScheduler(TCB_t* toSchedulerTCB){
+	// 开启一个空闲任务
+	TCB_t*  IdleTask_Handler =  xTaskCreateStatic((TaskFunction_t)prvIdleTask,
+												(char*) "IDLE",
+												(StackType_t)configMINIMAL_STACK_SIZE,
+												(void*)NULL,
+												(StackType_t*)(&IdleTaskStack),
+												(TCB_t*)&IdleTaskTCB);
+
+	// 挂载空闲任务至就绪列表
+	vListInsertEnd((List_t*)(&pxReadyTasksLists[0]), 
+	               (ListItem_t*)(&(IdleTask_Handler->xStateListItem)));
+
+	
 	// 暂时手动输入需要调度执行的任务
 	pxCurrentTCB = toSchedulerTCB;
 
@@ -125,6 +153,9 @@ void vTaskStartScheduler(TCB_t* toSchedulerTCB){
 BaseType_t xPortStartScheduler(void){
 	portNVIC_SYSPRI2_REG |= portNVIC_PENDSV_PRI;        // 设置上下文切换中断为最低优先级
 	portNVIC_SYSPRI2_REG |= portNVIC_SYSTICK_PRI;       // 设置系统滴答中断为最低优先级
+
+	// 初始化SysTick
+	vPortSetupTimerInterrupt();
 
 	// 开启第一个任务
 	prvStartFirstTask();
@@ -199,7 +230,7 @@ void portYIELD(void)
 	__isb(portSY_FULL_READ_ERITE);                              
 }
 
-/* task1和task2轮流切换执行 */
+#if 0
 void vTaskSwitchContext(void){
 	extern TCB_t TASK1TCB;  // 声明任务1的TCB
 	extern TCB_t TASK2TCB;  // 声明任务2的TCB
@@ -208,6 +239,53 @@ void vTaskSwitchContext(void){
 	}
 	else{
 		pxCurrentTCB = &TASK1TCB;
+	}
+}
+#else	
+#endif
+
+/* 任务切换上下文
+	如果当前任务是空闲任务就尝试去执行任务1或任务2，主要判断任务1或任务2里的延时(xTicksToDelay)是否到期
+	如果没有到期就继续执行空闲任务，反之去执行任务1或任务2
+*/
+void vTaskSwitchContext(void){
+	extern TCB_t TASK1TCB;  // 声明任务1的TCB
+	extern TCB_t TASK2TCB;  // 声明任务2的TCB
+	if(pxCurrentTCB == &IdleTaskTCB){
+		if(TASK1TCB.xTicksToDelay == 0){
+			pxCurrentTCB = &TASK1TCB;
+		}
+		else if(TASK2TCB.xTicksToDelay == 0){
+			pxCurrentTCB = &TASK2TCB;
+		}
+		else{
+			return;
+		}
+	}
+	else{
+		/* 如果当前任务是任务1或任务2，判断下一个任务是否还在延时，如果还在延时就切换到空闲任务，反之则切换到另一个任务 */
+		if(pxCurrentTCB == &TASK1TCB){
+			if(TASK2TCB.xTicksToDelay == 0){
+				pxCurrentTCB = &TASK2TCB;      // 切换到任务2
+			}
+			else if(pxCurrentTCB->xTicksToDelay != 0){
+				pxCurrentTCB = &IdleTaskTCB;   // 切换到空闲任务
+			}
+			else{
+				return;                        // 不切换
+			}
+		}
+		else if(pxCurrentTCB == &TASK2TCB){
+			if(TASK1TCB.xTicksToDelay == 0){
+				pxCurrentTCB = &TASK1TCB;      // 切换到任务1
+			}
+			else if(pxCurrentTCB->xTicksToDelay != 0){
+				pxCurrentTCB = &IdleTaskTCB;   // 切换到空闲任务
+			}
+			else{
+				return;                        // 不切换
+			}
+		}
 	}
 }
 
@@ -261,3 +339,39 @@ __asm void xPortPendSVHandler(void){
 	bx r14                         // 中断返回,PendSV中断服务函数r14被设置为0xfffffffd（硬件设置的）
 	nop
 }
+
+
+void vTaskDelay(const TickType_t xTicksToDelay){
+	TCB_t* pxTCB = pxCurrentTCB;                  // 获取当前任务控制块句柄
+	pxCurrentTCB->xTicksToDelay = xTicksToDelay;  // 设置当前任务的延时ticks周期数
+	portYIELD();
+}
+
+
+/* SysTick中断服务函数 */
+void xPortSysTickHandler(void){
+	// 进入临界区
+	uint32_t uxSavedInterruptStatus;
+	uxSavedInterruptStatus = ulPortRaiseBASEPRI();       // 关中断，保存当前中断屏蔽寄存器的值
+	xTaskIncrementTick();                                // 更新系统滴答计数器
+	taskEXIT_CRITICAL_FROM_ISR(uxSavedInterruptStatus);  // 退出临界区，带中断返回值
+	// 退出临界区
+}
+
+/* 系统更新时基函数 */
+void xTaskIncrementTick(void){
+	xTickCount++;
+	TCB_t* pxTCB = NULL;
+
+	// 遍历就绪链表数组并且更新所有任务的延时计数器xTicksToDelay
+	for (UBaseType_t i = 0;i<configMAX_PRIORITIES;i++){
+		List_t* pxReadyTasksList = &pxReadyTasksLists[i];  // 获取当前就绪链表
+		pxTCB = (TCB_t*)listGET_OWNER_OF_NEXT_ENTRY(pxReadyTasksList);
+		if (pxTCB->xTicksToDelay > 0){
+			pxTCB->xTicksToDelay--;  // 延时计数器减1
+		}
+	}
+
+	portYIELD();           // 触发PendSV中断,进行任务切换
+}
+

@@ -6,6 +6,7 @@
 #include "FreeRTOSConfig.h"
 #define portINITIAL_XPSR         (0x01000000)
 #define portSTART_ADDRESS_MASK   ((StackType_t)0xfffffffeUL)
+#define configMINIMAL_STACK_SIZE 128    // 定义空闲任务栈的大小
 
 /*
 * 参考资料《STM32F10xxx Cortex-M3 programming manual》4.4.7，百度搜索“PM0056”即可找到这个文档
@@ -30,10 +31,13 @@ struct tsTaskControlBlock{
 	StackType_t*                  pxStack;               /* 任务栈起始地址 */
 	
 	char        pcTaskName[configMAX_TASK_NAME_LEN];     /* 定义任务名称字符串 */
+	TickType_t  xTicksToDelay;                           /* 任务延时计数器*/
 };
 
 typedef struct tsTaskControlBlock TCB_t;
 
+// 软件延时
+void delay(UBaseType_t count);
 /* 静态方式创建一个任务 
    xTaskCreateStatic -->  prvInitialiseNewTask 创建新的任务
    prvInitialiseNewTask  -->  pxPortInitialiseStack  初始化任务栈空间
@@ -100,5 +104,12 @@ __asm void xPortPendSVHandler(void);
 // 退出临界段，带中断返回值
 #define taskEXIT_CRITICAL_FROM_ISR(uxSavedInterruptStatus)  portCLEAR_INTERRUPT_MASK_FROM_ISR(uxSavedInterruptStatus)
 
-
+// 定义一个空闲任务
+void prvIdleTask(void* pvParameters);
+/* 任务延时相关函数 */
+void vTaskDelay(const TickType_t xTicksToDelay);  
+/* SysTick中断服务函数 */
+void xPortSysTickHandler(void);
+/* 系统更新时基函数 */ 
+void xTaskIncrementTick(void);             
 #endif
