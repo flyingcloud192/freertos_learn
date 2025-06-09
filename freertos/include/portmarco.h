@@ -27,13 +27,16 @@ typedef unsigned short   uint16_t;
 #define portNVIC_SYSTICK_INT_BIT    (1UL << 1UL)   // SysTick中断使能位
 #define portNVIC_SYSTICK_ENABLE_BIT (1UL << 0UL)   // SysTick使能位
 
+#define portRECORD_READY_PRIORITY(uxPriority,uxTopReadyPriority)      (uxTopReadyPriority |= (1UL << uxPriority))     // 设置优先级uxPriority为就绪态
+#define portCLEAR_READY_PRIORITY(uxPriority,uxTopReadyPriority)       (uxTopReadyPriority &= ~(1UL << uxPriority))    // 清空优先级uxPriority为非就绪态
+#define portGET_HIGHEST_PRIORITY(uxTopPriority,uxTopReadyPriority)    (uxTopPriority = (31UL - (uint32_t)__clz(uxTopReadyPriority)))   // 获取当前最高优先级
 
 
 typedef portSTACK_TYPE   StackType_t;
 typedef long             BaseType_t;
 typedef unsigned long    UBaseType_t;
-typedef void *          TaskHandle_t;       // 定义任务句柄
-typedef void (*TaskFunction_t)(void*);      // 定义函数指针TaskFunction_t 其指向输入形参为void*,返回类型为void的函数
+typedef void *           TaskHandle_t;       // 定义任务句柄
+typedef void (*TaskFunction_t)(void*);       // 定义函数指针TaskFunction_t 其指向输入形参为void*,返回类型为void的函数
 
 #if (configUSE_16_BIT_TICKS == 1)
 	typedef uint16_t TickType_t;

@@ -32,6 +32,7 @@ struct tsTaskControlBlock{
 	
 	char        pcTaskName[configMAX_TASK_NAME_LEN];     /* 定义任务名称字符串 */
 	TickType_t  xTicksToDelay;                           /* 任务延时计数器*/
+	UBaseType_t uxPriority;                              /* 任务优先级 */
 };
 
 typedef struct tsTaskControlBlock TCB_t;
@@ -46,6 +47,7 @@ TaskHandle_t xTaskCreateStatic( TaskFunction_t pxTaskCode,          // 任务执
 								const char* const pxTaskName,       // 任务名字
 								const StackType_t ulStackDepth,     // 任务栈大小
 								void * const pvParameters,          // 任务执行函数形参
+								UBaseType_t uxPriority,             // 任务优先级
 								StackType_t* const puxStackBuffer,  // 任务栈的起始地址
 								TCB_t*  pxTaskBuffer);              // 任务控制块指针
 								
@@ -54,6 +56,7 @@ void prvInitialiseNewTask( TaskFunction_t pxTaskCode,          // 任务执行�
 						   const char* const pxTaskName,       // 任务名字
 						   const StackType_t ulStackDepth,     // 任务栈大小 
 			               void * const pvParameters,          // 任务执行函数形参
+						   UBaseType_t uxPriority,             // 任务优先级
 						   TaskHandle_t* const pxCreatedTask,  // 创建任务句柄
 						   TCB_t* pxNewTCB);                   // 任务控制块指针,任务控制块在调用本函数前完成定义
 
@@ -111,5 +114,13 @@ void vTaskDelay(const TickType_t xTicksToDelay);
 /* SysTick中断服务函数 */
 void xPortSysTickHandler(void);
 /* 系统更新时基函数 */ 
-void xTaskIncrementTick(void);             
+void xTaskIncrementTick(void);     
+/* 当前最大优先级任务比较 */
+void taskRECORD_READY_PRIORITY(UBaseType_t uxPriority);
+/* 清空任务优先级为非就绪态 */
+void taskCLEAR_READY_PRIORITY(UBaseType_t uxPriority);
+/* 获取当前最大任务优先级并更新当前任务控制块指针 */
+void taskSELECT_HIGHEST_PRIORITY_TASK(void);   
+static void prvAddNewTaskToReadyList(TCB_t* pxNewTCB);
+static inline void prvAddTaskToReadyList(TCB_t* pxNewTCB);
 #endif

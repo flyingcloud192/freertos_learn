@@ -2,39 +2,39 @@
 Rebuild target 'Target 1'
 assembling startup_stm32f10x_hd.s...
 compiling main.c...
-..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\FreeRTOSConfig.h(19): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\freertos\include\list.h(67): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\include\task.h(115): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\task.h(126): warning:  #1-D: last line of file ends without a newline
   #endif
-..\user\main.c(93): warning:  #111-D: statement is unreachable
+..\user\main.c(78): warning:  #111-D: statement is unreachable
   	return 0;
 ..\user\main.c: 4 warnings, 0 errors
 compiling portmarco.c...
-..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\FreeRTOSConfig.h(19): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\freertos\source\portmarco.c(44): warning:  #1-D: last line of file ends without a newline
   }
 ..\freertos\source\portmarco.c: 2 warnings, 0 errors
 compiling list.c...
-..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\FreeRTOSConfig.h(19): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\freertos\include\list.h(67): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\freertos\source\list.c: 2 warnings, 0 errors
 compiling task.c...
-..\freertos\include\FreeRTOSConfig.h(18): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\FreeRTOSConfig.h(19): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\freertos\include\list.h(67): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\include\task.h(115): warning:  #1-D: last line of file ends without a newline
+..\freertos\include\task.h(126): warning:  #1-D: last line of file ends without a newline
   #endif
-..\freertos\source\task.c(351): warning:  #177-D: variable "pxTCB" was declared but never referenced
-  	TCB_t* pxTCB = pxCurrentTCB;                  // Ëé?Âè?ÂΩ?Ââ?‰ª?Âä?Êé?Âà?Âù?Âè?Êü?
+..\freertos\source\task.c(463): warning:  #1-D: last line of file ends without a newline
+  }
 ..\freertos\source\task.c: 4 warnings, 0 errors
 compiling system_stm32f10x.c...
 linking...
-Program Size: Code=1804 RO-data=336 RW-data=16 ZI-data=3792  
+Program Size: Code=1864 RO-data=336 RW-data=20 ZI-data=4532  
 ".\Objects\LinkTable.axf" - 0 Error(s), 12 Warning(s).
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
